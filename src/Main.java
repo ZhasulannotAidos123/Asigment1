@@ -1,26 +1,58 @@
 
 public class Main {
     /*
+    * This method calculates the lowest number in array
+    * it uses recursive approach
+    * Time complexity: O(n) ,where n is the length of array
+    * The recursion runs within array from length-1 to 0
+    * resulting in linear time complexity
     *
+    * @param length is length of input array, m is input array , lowest is number in array which we must compare in array
+    *@return the lowest number in array
     * */
+    public static int lowestNumber(int legnth,int[] m,int lowest) {
+        if(legnth==0)
+        {
+            return lowest;
+        }
+        if(m[legnth]<lowest)
+        {
+            lowest=m[legnth];
+        }
+        return lowestNumber(legnth-1,m,lowest);
+    }
+    public static int lowestNumber()
+    {
+        int[] m={3,4,1,5,-12};
+        return lowestNumber(m.length-1,m,0);
+    }
+    /*
+     * This method calculates the mean number in array
+     * it uses recursive approach
+     * Time complexity: O(n) ,where n is the length of array
+     * The recursion runs within array from length-1 to 0
+     * resulting in linear time complexity
+     *
+     * @param length is length of input array, m is input array , currIndex is index for curren mass for sum , sum is sum of elements of array
+     * @return the mean number in array
+     * */
     public static double getMean(int currIndex, int[] m,double sum) {
         if (currIndex == m.length) {
             return (double) sum / m.length;
         }
         return getMean(currIndex + 1,m,m[currIndex]+sum);
     }
-
     public static double getMean()
     {
         int[] m={3,4,1,5,-12};
-        return getMean(0,m,0);
+        return  getMean(0,m,0);
     }
     public static void main(String[] args) {
         double startTime=System.nanoTime();
-        double result = getMean();
+        double result =getMean();
         double endTime =System.nanoTime();
         double duration =(endTime-startTime)/1000000;
-        System.out.println("mean number "+result);
+        System.out.println("Mean number "+result);
         System.out.println("Duration "+duration);
     }
 }
